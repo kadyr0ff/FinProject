@@ -20,7 +20,7 @@ public class Branch {
     @Column(name = "address", nullable = true, columnDefinition = "TEXT")
     private String address;
 
-    @Column(name = "city_id", nullable = false, columnDefinition = "NUMBER")
+    @Column(name = "city_id", nullable = false, columnDefinition = "NUMERIC")
     private long cityId;
 
     @Column(name = "change_date", nullable = false, insertable = false, columnDefinition = "DATE")
