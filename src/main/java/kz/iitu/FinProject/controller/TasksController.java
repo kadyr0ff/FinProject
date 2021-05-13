@@ -42,8 +42,16 @@ public class TasksController {
     }
 
     @PostMapping("/{id}")
-    public String update(@ModelAttribute("task") Task task){
+    public String updateTask(@ModelAttribute("task") Task task, @PathVariable long id){
+        task.setId(id);
         taskRepo.save(task);
         return "redirect:/tasks";
     }
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable("id") long id){
+        taskRepo.deleteById(id);
+        return "redirect:/tasks";
+    }
+
 }

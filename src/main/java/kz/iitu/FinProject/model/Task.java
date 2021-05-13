@@ -72,6 +72,10 @@ public class Task {
         return assigneeId;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getOriginBranchId() {
         return originBranchId;
     }

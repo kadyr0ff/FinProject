@@ -30,16 +30,26 @@
     <table class="table">
         <thead>
         <tr>
-            <th style="width: 7%" scope="col"> ID</th>
-            <th style="width: 63%" scope="col"> Description</th>
-            <th style="width: 15%" scope="col"> Created Date</th>
-            <th style="width: 15%" scope="col"> Action</th>
+            <th style="width: 3%" scope="col">ID</th>
+            <th style="width: 20%" scope="col">Description</th>
+            <th style="width: 17%" scope="col">Assignee</th>
+            <th style="width: 5%" scope="col">Origin Branch</th>
+            <th style="width: 5%" scope="col">Origin City</th>
+            <th style="width: 5%" scope="col">Destination Branch</th>
+            <th style="width: 5%" scope="col">Destination City</th>
+            <th style="width: 15%" scope="col">Created Date</th>
+            <th style="width: 15%" scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="task : ${tasks}">
             <th scope="row"><span th:text="${task.getId()}"> </span></th>
             <td><span th:text="${task.getDescription()}"> Description </span></td>
+            <td><span th:text="${task.getAssigneeId()}"></span></td>
+            <td><span th:text="${task.getOriginBranchId()}"> Origin Branch Id</span></td>
+            <td><span th:text="${task.getOriginCityId()}"></span></td>
+            <td><span th:text="${task.getDestinationBranchId()}"> Destination Branch Id</span></td>
+            <td><span th:text="${task.getDestinationCityId()}"></span></td>
             <td><span th:text="${task.getChangeDate()}"> Created Date </span></td>
             <td>
                 <a class="btn btn-primary btn-sm" th:href="@{/tasks/{id}/edit(id=${task.getId()})}">Update</a>
