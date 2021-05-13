@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class Assignee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
@@ -17,7 +17,7 @@ public class User {
     @Column(name = "change_date", updatable = true, columnDefinition = "DATE")
     private Date changeDate;
 
-    public User() {
+    public Assignee() {
         changeDate = new Date(System.currentTimeMillis());
     }
 
