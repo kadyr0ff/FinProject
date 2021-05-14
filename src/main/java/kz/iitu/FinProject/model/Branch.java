@@ -20,14 +20,28 @@ public class Branch {
     @Column(name = "address", nullable = true, columnDefinition = "TEXT")
     private String address;
 
-    @Column(name = "city_id", nullable = false, columnDefinition = "NUMERIC")
+    @Column(name = "city_id", nullable = true, columnDefinition = "NUMERIC")
     private long cityId;
 
-    @Column(name = "change_date", nullable = false, insertable = false, columnDefinition = "DATE")
+    @Column(name = "change_date", nullable = true, insertable = false, columnDefinition = "DATE")
     private Date changeDate;
 
     public Branch() {
         changeDate = new Date(System.currentTimeMillis());
+    }
+
+    public Branch(String name) {
+        this.name = name;
+        changeDate = new Date(System.currentTimeMillis());
+    }
+
+    public Branch(String name, String contact, String address, long cityId) {
+        changeDate = new Date(System.currentTimeMillis());
+        this.name = name;
+        this.contact = contact;
+        this.address = address;
+        this.cityId = cityId;
+
     }
 
     public long getId() {
@@ -49,6 +63,14 @@ public class Branch {
 
     public String getContact() {
         return contact;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setChangeDate(Date changeDate) {
+        this.changeDate = changeDate;
     }
 
     public void setContact(String contact) {

@@ -17,6 +17,34 @@
             <label for="description">Change the description:</label>
             <textarea class="form-control" type="text" th:field="*{description}" id="description" rows="7"></textarea>
             <br/>
+            <label for="originCityId">Change origin city:</label>
+            <select th:field="*{originCityId}" id="originCityId">
+                <option th:each="city : ${cities}"
+                        th:value="${city.getId()}"
+                        th:text="${city.getName()}"></option>
+            </select>
+            <br/>
+            <label for="originBranchId">Change origin branch:</label>
+            <select th:field="*{originBranchId}" id="originBranchId">
+                <option th:each="branch : ${branches}"
+                        th:value="${branch.getId()}"
+                        th:text="${branch.getName()}"></option>
+            </select>
+            <br/>
+            <label for="destinationCityId">Change destination city:</label>
+            <select th:field="*{destinationCityId}" id="destinationCityId">
+                <option th:each="city : ${cities}"
+                        th:value="${city.getId()}"
+                        th:text="${city.getName()}"></option>
+            </select>
+            <br/>
+            <label for="destinationBranchId">Change destination branch:</label>
+            <select th:field="*{destinationBranchId}" id="destinationBranchId">
+                <option th:each="branch : ${branches}"
+                        th:value="${branch.getId()}"
+                        th:text="${branch.getName()}"></option>
+            </select>
+            <br/>
             <input class="btn btn-primary" type="submit" value="update"/>
         </div>
     </form>

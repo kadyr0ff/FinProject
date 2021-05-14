@@ -72,6 +72,10 @@ public class Task {
         return assigneeId;
     }
 
+    public void setChangeDate(Date changeDate) {
+        this.changeDate = changeDate;
+    }
+
     public void setId(long id) {
         this.id = id;
     }

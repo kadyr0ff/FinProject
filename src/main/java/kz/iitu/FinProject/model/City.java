@@ -23,6 +23,7 @@ public class City {
 
     public City(String name) {
         this.name = name;
+        changeDate = new Date(System.currentTimeMillis());
     }
 
     public String getName() {
@@ -36,6 +37,14 @@ public class City {
 
     public long getId() {
         return id;
+    }
+
+    public void setChangeDate(Date changeDate) {
+        this.changeDate = changeDate;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Date getChangeDate() {

@@ -10,21 +10,6 @@
 <div class="nav">
     <h1>ToDo List</h1>
 </div>
-<!--<div style="margin: 20px 50px 20px 50px; width: 50%">
-    <h4>Create new task</h4>
-    <form th:method="POST" th:action="@{/tasks}" th:object="${task}">
-        <div class="form-group">
-            <label for="description">Give description:</label>
-            <textarea class="form-control" th:field="*{description}" id="description" rows="4"></textarea>
-            <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Message</div>
-            <br/>
-            <label for="date">Pick a date:</label>
-            <input class="form-control" type="date" th:field="*{date}" id="date"/>
-            <br/>
-            <input class="btn btn-primary" type="submit" value="submit"/>
-        </div>
-    </form>
-</div>-->
 <div class="divTable" style="margin: 20px 50px 20px 50px">
     <h4>Current tasks</h4>
     <table class="table">
@@ -37,7 +22,7 @@
             <th style="width: 5%" scope="col">Origin City</th>
             <th style="width: 5%" scope="col">Destination Branch</th>
             <th style="width: 5%" scope="col">Destination City</th>
-            <th style="width: 15%" scope="col">Created Date</th>
+            <th style="width: 15%" scope="col">Change Date</th>
             <th style="width: 15%" scope="col">Action</th>
         </tr>
         </thead>
@@ -46,10 +31,16 @@
             <th scope="row"><span th:text="${task.getId()}"> </span></th>
             <td><span th:text="${task.getDescription()}"> Description </span></td>
             <td><span th:text="${task.getAssigneeId()}"></span></td>
-            <td><span th:text="${task.getOriginBranchId()}"> Origin Branch Id</span></td>
-            <td><span th:text="${task.getOriginCityId()}"></span></td>
-            <td><span th:text="${task.getDestinationBranchId()}"> Destination Branch Id</span></td>
-            <td><span th:text="${task.getDestinationCityId()}"></span></td>
+<!--            <td><span th:text="${task.getOriginBranchId()}"></span></td>-->
+            <td><span th:each="branch : ${branches}" th:if="(${branch.getId()} == ${task.getOriginBranchId()})"
+                      th:text="${branch.getName()}"> Origin Branch ID</span></td>
+            <td><span th:each="city : ${cities}" th:if="(${city.getId()} == ${task.getOriginCityId()})"
+                      th:text="${city.getName()}"> Origin City ID</span></td>
+<!--            <td><span th:text="${task.getDestinationBranchId()}"> Destination Branch Id</span></td>-->
+            <td><span th:each="branch : ${branches}" th:if="(${branch.getId()} == ${task.getDestinationBranchId()})"
+                      th:text="${branch.getName()}"> Destination Branch ID</span></td>
+            <td><span th:each="city : ${cities}" th:if="(${city.getId()} == ${task.getDestinationCityId()})"
+                      th:text="${city.getName()}"> Destination City ID</span></td>
             <td><span th:text="${task.getChangeDate()}"> Created Date </span></td>
             <td>
                 <a class="btn btn-primary btn-sm" th:href="@{/tasks/{id}/edit(id=${task.getId()})}">Update</a>
@@ -63,6 +54,7 @@
 <br/>
 <div class="divCreate" style="margin: 20px 50px 20px 50px">
     <a class="btn btn-primary" href="/tasks/new">Create a new Task</a>
+    <a class="btn btn-primary" href="/cities">Show cities</a>
 </div>
 </body>
 </html>
