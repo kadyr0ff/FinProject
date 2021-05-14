@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/tasks")
 public class TasksRestController {
     private final TaskRepo taskRepo;
 
@@ -17,12 +17,12 @@ public class TasksRestController {
         this.taskRepo = taskRepo;
     }
 
-    @GetMapping("/tasks")
+    @GetMapping
     List<Task> getAllTasks(){
         return taskRepo.findAll();
     }
 
-    @PostMapping("/tasks")
+    @PostMapping
     Task newTask(@RequestBody Task task){
         return taskRepo.save(task);
     }
