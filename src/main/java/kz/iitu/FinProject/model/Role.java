@@ -1,8 +1,8 @@
 package kz.iitu.FinProject.model;
 
 public enum Role {
-    User("user"),
-    Admin("admin");
+    User("USER"),
+    Admin("ADMIN");
 
     public final String role;
 
