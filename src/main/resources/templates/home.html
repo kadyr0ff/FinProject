@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Spring Security Example</title>
+    <link rel="stylesheet" href="../../bootstrap-5.0.1-dist/bootstrap-5.0.1-dist/css/bootstrap.min.css">
+    <title>Spring Security Home Page</title>
+
+    <div th:replace="fragments/header :: header-css"></div>
 </head>
 <body>
-<h1>Welcome!</h1>
 
-<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="starter-template">
+    <h1>Welcome to ALIKOIL!</h1>
+    <p>1. Visit <a th:href="@{/hello}">Hello page (Spring Security protected)</a> to see a greeting.</p>
+    <p>2. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin role)</a></p>
+    <p>3. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User role)</a></p>
+    <p>4. Visit <a th:href="@{/about}">About page (Spring Security protected)</a></p>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
 </body>
 </html>
