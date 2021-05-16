@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -16,7 +17,8 @@
         <thead>
         <tr>
             <th style="width: 10%" scope="col">Branch ID</th>
-            <th style="width: 60%" scope="col">Branch Name</th>
+            <th style="width: 50%" scope="col">Branch Name</th>
+            <th style="width:10%" scope="col">City</th>
             <th style="width: 15%" scope="col">Change Date</th>
             <th style="width: 15%" scope="col">Action</th>
         </tr>
@@ -25,16 +27,21 @@
         <tr th:each="branch : ${branches}">
             <th scope="row"><span th:text="${branch.getId()}"> </span></th>
             <td><span th:text="${branch.getName()}"> Description </span></td>
+            <td><span th:each="city : ${cities}" th:if="(${city.getId()}==${branch.getCityId()})"
+                      th:text="${city.getName()}">City</span></td>
             <td><span th:text="${branch.getChangeDate()}"> Created Date </span></td>
             <td>
-                <a class="btn btn-primary btn-sm" th:href="@{/branches/{id}/edit(id=${branch.getId()})}">Update</a>
+                <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/branches/{id}/edit(id=${branch.getId()})}">Update</a>
                 <span> </span>
-                <a class="btn btn-primary btn-sm" th:href="@{/branches/{id}/delete(id=${branch.getId()})}">Delete</a>
+                <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/branches/{id}/delete(id=${branch.getId()})}">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
 <br/>
+<div class="divCreate" style="margin: 20px 50px 20px 50px">
+    <a class="btn btn-primary" href="/tasks">Back to the tasks</a>
+</div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -27,14 +28,17 @@
             <td><span th:text="${city.getName()}"> Description </span></td>
             <td><span th:text="${city.getChangeDate()}"> Created Date </span></td>
             <td>
-                <a class="btn btn-primary btn-sm" th:href="@{/cities/{id}/edit(id=${city.getId()})}">Update</a>
+                <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/cities/{id}/edit(id=${city.getId()})}">Update</a>
                 <span> </span>
-                <a class="btn btn-primary btn-sm" th:href="@{/cities/{id}/delete(id=${city.getId()})}">Delete</a>
+                <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/cities/{id}/delete(id=${city.getId()})}">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
 <br/>
+<div class="divCreate" style="margin: 20px 50px 20px 50px">
+    <a class="btn btn-primary" href="/tasks">Back to the tasks</a>
+</div>
 </body>
 </html>

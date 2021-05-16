@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name = "branches")
 public class Branch {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
@@ -35,7 +35,8 @@ public class Branch {
         changeDate = new Date(System.currentTimeMillis());
     }
 
-    public Branch(String name, String contact, String address, long cityId) {
+    public Branch(long id, String name, String contact, String address, long cityId) {
+        this.id = id;
         changeDate = new Date(System.currentTimeMillis());
         this.name = name;
         this.contact = contact;

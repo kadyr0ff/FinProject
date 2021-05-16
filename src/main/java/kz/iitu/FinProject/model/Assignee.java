@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name = "users")
 public class Assignee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
     @Column(name = "username", nullable = false, updatable = false, columnDefinition = "TEXT")

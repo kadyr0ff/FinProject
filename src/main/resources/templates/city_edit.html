@@ -11,9 +11,11 @@
 <div class="nav">
     <h1>Edit a task</h1>
 </div>
-<div style="margin: 20px 50px 20px 50px; width: 50%">
+<div style="margin: 20px 50px 20px 50px; width: 20%">
     <form th:method="POST" th:action="@{/cities/{id}(id=${city.getId()})}" th:object="${city}">
         <div class="form-group">
+            <label for="cityId">City ID:</label>
+            <input type="text" class="form-control" th:field="*{id}" id = cityId disabled>
             <label for="cityName">Change the city name:</label>
             <input class="form-control" type="text" th:field="*{name}" id="cityName">
             <br/>

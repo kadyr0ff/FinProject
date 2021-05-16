@@ -22,15 +22,17 @@ public class CityController {
         this.cityRepo = cityRepo;
         if (cityRepo.count() <= 0) {
             ArrayList<City> cities = new ArrayList<>();
-            cities.add(new City("Astana"));
-            cities.add(new City("Almaty"));
-            cities.add(new City("Shymkent"));
-            cities.add(new City("Karaganda"));
-            cities.add(new City("Pavlodar"));
-            cities.add(new City("Atyrau"));
-            cities.add(new City("Ust-Kamenogorsk"));
-            cities.add(new City("Zhezkazgan"));
-            cities.add(new City("Aktobe"));
+            cities.add(new City(1, "Astana"));
+            cities.add(new City(2, "Almaty"));
+            cities.add(new City(3, "Kokshetau"));
+            cities.add(new City(17,"Shymkent"));
+            cities.add(new City(9,"Karaganda"));
+            cities.add(new City(14,"Pavlodar"));
+            cities.add(new City(6,"Atyrau"));
+            cities.add(new City(7, "Oral"));
+            cities.add(new City(12, "Aktau"));
+            cities.add(new City(16, "Ust-Kamenogorsk"));
+            cities.add(new City(4, "Aktobe"));
             cityRepo.saveAll(cities);
         }
     }

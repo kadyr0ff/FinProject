@@ -3,6 +3,7 @@ package kz.iitu.FinProject.controller;
 import kz.iitu.FinProject.model.Branch;
 import kz.iitu.FinProject.model.City;
 import kz.iitu.FinProject.repo.BranchRepo;
+import kz.iitu.FinProject.repo.CityRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,17 +16,19 @@ import java.util.Date;
 @RequestMapping("/branches")
 public class BranchController {
     private final BranchRepo branchRepo;
+    private final CityRepo cityRepo;
 
     @Autowired
-    BranchController(BranchRepo branchRepo) {
+    BranchController(BranchRepo branchRepo, CityRepo cityRepo) {
         this.branchRepo = branchRepo;
+        this.cityRepo = cityRepo;
         if (branchRepo.count() <= 0) {
             ArrayList<Branch> branches = new ArrayList<>();
-            branches.add(new Branch("DHL", "Almas", "Almaty", 1));
-            branches.add(new Branch("Pony Express", "Almas", "Almaty", 1));
-            branches.add(new Branch("Alem TAT", "Almas", "Almaty", 1));
-            branches.add(new Branch("EMS Kazakhstan", "Almas", "Almaty", 1));
-            branches.add(new Branch("China Post", "Almas", "Almaty", 1));
+            branches.add(new Branch(30,"IITU", "Almas", "Fake address", 2));
+            branches.add(new Branch(31,"Pony Express", "Almas", "Fake address", 2));
+            branches.add(new Branch(32,"Alem TAT", "Almas", "Fake address", 2));
+            branches.add(new Branch(33,"EMS Kazakhstan", "Almas", "Fake address", 2));
+            branches.add(new Branch(34,"China Post", "Almas", "Fake address", 2));
             branchRepo.saveAll(branches);
         }
     }
@@ -33,12 +36,14 @@ public class BranchController {
     @GetMapping
     public String getAllBranches(Model model) {
         model.addAttribute("branches", branchRepo.findAll());
+        model.addAttribute("cities", cityRepo.findAll());
         return "branch_list";
     }
 
     @GetMapping("/new")
     public String newBranch(Model model) {
-        model.addAttribute("branch", new City());
+        model.addAttribute("branch", new Branch());
+        model.addAttribute("cities", cityRepo.findAll());
         return "branch_new";
     }
 
@@ -51,6 +56,7 @@ public class BranchController {
     @GetMapping("/{id}/edit")
     public String editBranch(Model model, @PathVariable("id") long id) {
         model.addAttribute("branch", branchRepo.getOne(id));
+        model.addAttribute("cities", cityRepo.findAll());
         return "branch_edit";
     }
 

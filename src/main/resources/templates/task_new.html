@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,43 +8,43 @@
 </head>
 <body style="margin: 20px">
 <div class="nav">
-    <h1>Edit a task</h1>
+    <h1>Create a task</h1>
 </div>
-<div style="margin: 20px 50px 20px 50px; width: 50%">
-    <form th:method="POST" th:action="@{/tasks/{id}(id=${task.getId()})}" th:object="${task}">
+<div style="margin: 20px 50px 20px 50px; width: 30%">
+    <form th:method="POST" th:action="@{/tasks}" th:object="${task}">
         <div class="form-group">
-            <label for="description">Change the description:</label>
-            <textarea class="form-control" type="text" th:field="*{description}" id="description" rows="7"></textarea>
+            <label for="description">Shortly describe the task:</label>
+            <input class="form-control" type="text" th:field="*{description}" id="description">
             <br/>
-            <label for="originCityId">Change origin city:</label>
+            <label for="originCityId">Pick up city:</label>
             <select th:field="*{originCityId}" id="originCityId">
                 <option th:each="city : ${cities}"
                         th:value="${city.getId()}"
                         th:text="${city.getName()}"></option>
             </select>
             <br/>
-            <label for="originBranchId">Change origin branch:</label>
+            <label for="originBranchId">Pick up place:</label>
             <select th:field="*{originBranchId}" id="originBranchId">
                 <option th:each="branch : ${branches}"
                         th:value="${branch.getId()}"
                         th:text="${branch.getName()}"></option>
             </select>
             <br/>
-            <label for="destinationCityId">Change destination city:</label>
+            <label for="destinationCityId">Destination city:</label>
             <select th:field="*{destinationCityId}" id="destinationCityId">
                 <option th:each="city : ${cities}"
                         th:value="${city.getId()}"
                         th:text="${city.getName()}"></option>
             </select>
             <br/>
-            <label for="destinationBranchId">Change destination branch:</label>
+            <label for="destinationBranchId">Destination place:</label>
             <select th:field="*{destinationBranchId}" id="destinationBranchId">
                 <option th:each="branch : ${branches}"
                         th:value="${branch.getId()}"
                         th:text="${branch.getName()}"></option>
             </select>
             <br/>
-            <input class="btn btn-primary" type="submit" value="update"/>
+            <input class="btn btn-primary" type="submit" value="Save"/>
         </div>
     </form>
 </div>

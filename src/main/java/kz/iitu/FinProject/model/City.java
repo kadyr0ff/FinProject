@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name = "cities")
 public class City {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
@@ -23,6 +23,12 @@ public class City {
 
     public City(String name) {
         this.name = name;
+        changeDate = new Date(System.currentTimeMillis());
+    }
+
+    public City(long id, String name) {
+        this.name = name;
+        this.id = id;
         changeDate = new Date(System.currentTimeMillis());
     }
 
