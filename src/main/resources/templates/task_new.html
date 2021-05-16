@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+</head>
+<body style="margin: 20px">
+<div class="nav">
+    <h1>Create a task</h1>
+</div>
+<div style="margin: 20px 50px 20px 50px; width: 30%">
+    <form th:method="POST" th:action="@{/tasks}" th:object="${task}">
+        <div class="form-group">
+            <label for="description">Shortly describe the task:</label>
+            <input class="form-control" type="text" th:field="*{description}" id="description">
+            <br/>
+            <label for="originCityId">Pick up city:</label>
+            <select th:field="*{originCityId}" id="originCityId">
+                <option th:each="city : ${cities}"
+                        th:value="${city.getId()}"
+                        th:text="${city.getName()}"></option>
+            </select>
+            <br/>
+            <label for="originBranchId">Pick up place:</label>
+            <select th:field="*{originBranchId}" id="originBranchId">
+                <option th:each="branch : ${branches}"
+                        th:value="${branch.getId()}"
+                        th:text="${branch.getName()}"></option>
+            </select>
+            <br/>
+            <label for="destinationCityId">Destination city:</label>
+            <select th:field="*{destinationCityId}" id="destinationCityId">
+                <option th:each="city : ${cities}"
+                        th:value="${city.getId()}"
+                        th:text="${city.getName()}"></option>
+            </select>
+            <br/>
+            <label for="destinationBranchId">Destination place:</label>
+            <select th:field="*{destinationBranchId}" id="destinationBranchId">
+                <option th:each="branch : ${branches}"
+                        th:value="${branch.getId()}"
+                        th:text="${branch.getName()}"></option>
+            </select>
+            <br/>
+            <input class="btn btn-primary" type="submit" value="Save"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

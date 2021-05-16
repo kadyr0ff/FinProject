@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+</head>
+<body style="margin: 20px">
+<div class="nav">
+    <h1>Edit a task</h1>
+</div>
+<div style="margin: 20px 50px 20px 50px; width: 20%">
+    <form th:method="POST" th:action="@{/cities/{id}(id=${city.getId()})}" th:object="${city}">
+        <div class="form-group">
+            <label for="cityId">City ID:</label>
+            <input type="text" class="form-control" th:field="*{id}" id = cityId disabled>
+            <label for="cityName">Change the city name:</label>
+            <input class="form-control" type="text" th:field="*{name}" id="cityName">
+            <br/>
+            <input class="btn btn-primary" type="submit" value="update"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

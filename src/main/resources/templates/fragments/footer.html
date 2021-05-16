@@ -8,17 +8,14 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <div th:fragment="footer">
-        <div class="container">
-            <footer>
-                <span sec:authorize="isAuthenticated()">
-                    Logged user: <span sec:authentication="name"></span> |
-                    Roles: <span sec:authentication="principal.authorities"></span> |
-                    <a th:href="@{/logout}">Sign Out</a>
-                </span>
-
-            </footer>
-        </div>
-    </div>
+<div style="margin: 20px 50px 20px 50px" th:fragment="footer">
+            <span sec:authorize="isAuthenticated()">Logged user:
+            <span sec:authentication="name"></span> | Roles:
+                <span sec:authentication="principal.authorities"></span>
+            </span>
+    <form th:action="@{/logout}" method="post">
+        <input class="btn btn-primary" type="submit" value="Sign Out"/>
+    </form>
+</div>
 </body>
 </html>

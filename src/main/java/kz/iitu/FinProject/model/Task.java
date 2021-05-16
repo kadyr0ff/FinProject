@@ -1,13 +1,14 @@
 package kz.iitu.FinProject.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 @Table(name = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
@@ -23,41 +24,51 @@ public class Task {
     private long originCityId;
     @Column(name = "destination_city_id")
     private long destinationCityId;
-    @Column(name = "change_date")
-    private Date changeDate;
+    @Column(name = "status", columnDefinition = "TEXT")
+    private String status;
+    @Column(name = "change_date", columnDefinition = "TIMESTAMP")
+    private LocalDateTime changeDate;
 
     public Task() {
-        changeDate = new Date(System.currentTimeMillis());
+        changeDate = LocalDateTime.now();
     }
 
     public void setDescription(String description) {
         this.description = description;
-        changeDate = new Date(System.currentTimeMillis());
+        changeDate = LocalDateTime.now();
     }
 
     public void setAssigneeId(long assigneeId) {
         this.assigneeId = assigneeId;
-        changeDate = new Date(System.currentTimeMillis());
+        changeDate = LocalDateTime.now();
     }
 
     public void setOriginBranchId(long originBranchId) {
         this.originBranchId = originBranchId;
-        changeDate = new Date(System.currentTimeMillis());
+        changeDate = LocalDateTime.now();
     }
 
     public void setDestinationBranchId(long destinationBranchId) {
         this.destinationBranchId = destinationBranchId;
-        changeDate = new Date(System.currentTimeMillis());
+        changeDate = LocalDateTime.now();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setOriginCityId(long originCityId) {
         this.originCityId = originCityId;
-        changeDate = new Date(System.currentTimeMillis());
+        changeDate = LocalDateTime.now();
     }
 
     public void setDestinationCityId(long destinationCityId) {
         this.destinationCityId = destinationCityId;
-        changeDate = new Date(System.currentTimeMillis());
+        changeDate = LocalDateTime.now();
     }
 
     public long getId() {
@@ -70,6 +81,14 @@ public class Task {
 
     public long getAssigneeId() {
         return assigneeId;
+    }
+
+    public void setChangeDate(LocalDateTime changeDate) {
+        this.changeDate = changeDate;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getOriginBranchId() {
@@ -88,7 +107,7 @@ public class Task {
         return destinationCityId;
     }
 
-    public Date getChangeDate() {
+    public LocalDateTime getChangeDate() {
         return changeDate;
     }
 }

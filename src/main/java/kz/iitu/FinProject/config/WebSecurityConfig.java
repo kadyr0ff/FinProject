@@ -1,23 +1,18 @@
 package kz.iitu.FinProject.config;
 
+import kz.iitu.FinProject.error.MyAccessDeniedHandler;
 import kz.iitu.FinProject.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
@@ -25,19 +20,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/home", "/about").permitAll()
-                    .antMatchers("/admin/**").hasAnyRole(Role.Admin.role)
-                    .antMatchers("/user/**").hasAnyRole(Role.User.role)
-                    .anyRequest().authenticated()
+                .antMatchers("/", "/home", "/about").permitAll()
+                .antMatchers("/admin/**").hasAnyRole(Role.Admin.role)
+                .antMatchers("/user/**").hasAnyRole(Role.User.role)
+                .antMatchers("/**/edit").hasAnyRole(Role.Admin.role)
+                .antMatchers("/**/new").hasAnyRole(Role.Admin.role)
+                .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
                 .and()
-                    .logout()
-                    .permitAll()
+                .logout()
+                .permitAll()
                 .and()
-                    .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+
     }
 
     @Autowired
@@ -48,18 +46,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("admin").password("{noop}123123").roles(Role.Admin.role);
     }
-
-    // Deprecated method of creating an user
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("tiko")
-//                        .password("123")
-//                        .roles("USER")
-//                        .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
 }
