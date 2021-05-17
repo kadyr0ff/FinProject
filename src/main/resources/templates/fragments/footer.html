@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-md-3 mb-md-0 mb-3">
                         <h5 class="text-uppercase"></h5>
-                        <form th:action="@{/logout}" method="post">
+                        <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
                             <input class="btn btn-dark" type="submit" value="Sign Out"/>
                         </form>
                     </div>
