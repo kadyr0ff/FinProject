@@ -31,6 +31,11 @@ public class DefaultController {
         return "/about";
     }
 
+    @GetMapping("/main")
+    public String main() {
+        return "/main";
+    }
+
     @GetMapping("/login")
     public String login() {
         return "/login";
